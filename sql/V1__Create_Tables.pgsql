@@ -49,6 +49,8 @@ CREATE TABLE IF NOT EXISTS healthdata.sleep_session
   start_milliseconds bigserial NOT NULL,
   end_date timestamp NOT NULL,
   end_milliseconds bigserial NOT NULL,
+  google_fit_modified_milliseconds bigserial,
+  google_fit_modified_date timestamp,
   duration_ms serial NOT NULL,
   unique(start_date,end_date)
 );
