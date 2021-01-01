@@ -49,18 +49,20 @@ CREATE TABLE IF NOT EXISTS healthdata.sleep_session
   start_milliseconds bigserial NOT NULL,
   end_date timestamp NOT NULL,
   end_milliseconds bigserial NOT NULL,
-  duration_ms serial NOT NULL
+  duration_ms serial NOT NULL,
+  unique(start_date,end_date)
 );
 
 
 CREATE TABLE IF NOT EXISTS healthdata.sleep_session_data
 (
   id SERIAL PRIMARY KEY,
-  title varchar(200) NOT NULL,
-  comment varchar(200),
-  song varchar(200),
-  year int,
-  track_number int,
-  filename varchar(500) NOT NULL,
-  sleep_session_id int NOT NULL REFERENCES healthdata.sleep_session(id)
+  start_date timestamp NOT NULL,
+  start_nanoseconds bigserial NOT NULL,
+  end_date timestamp NOT NULL,
+  end_nanoseconds bigserial NOT NULL,
+  duration_ms serial NOT NULL,
+  sleep_stage_id int NOT NULL REFERENCES healthdata.google_fit_sleep_stages(id),
+  sleep_session_id int NOT NULL REFERENCES healthdata.sleep_session(id),
+  unique(start_date,end_date)
 );
