@@ -10,7 +10,7 @@ echo "rebuilding container"
 ./build.sh
 echo "Starting healthdatadb"
 ./run-db.sh
-sleep 10
+sleep 15
 echo "Running migration"
 ./migrate.sh
 echo "done!"
